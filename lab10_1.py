@@ -48,3 +48,26 @@ if __name__ == '__main__':
     i=i+1
   mediana=tiempo/5
   print(f"Tiempo de ejecucion media {mediana} segundos")
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+from urllib.request import urlopen
+from threading import Thread
+import time
+url1='https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png'
+url2='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png'
+links=[url1,url2]##arreglo que contiene las url de las imágenes
+def main(link):
+  with urlopen(link) as page:
+    image_data=page.read
+   
+if __name__ == '__main__':
+  t1=time.perf_counter()
+  i=0
+  while(i<2):
+    a=links[i]
+    f=Thread(target=main,args=(a))
+    f.start()
+    i=i+1
+  f.join()
+  t2=time.perf_counter()
+  tiempo=t2-t1
+  print(f"Tiempo de ejecucion {tiempo} segundos")
