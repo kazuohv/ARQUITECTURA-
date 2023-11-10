@@ -1,13 +1,16 @@
+from re import I
 from urllib.request import urlopen
 
 import time
 url1='https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png'
 url2='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png'
+links=[url1,url2]##arreglo que contiene las url de las imágenes
 def main():
-  with urlopen(url1) as page:
-    image_data=page.read
-  with urlopen(url2) as page:
-    image_data=page.read
+  i=0
+  while(i<2):
+    with urlopen(links[i]) as page:
+      image_data=page.read
+      i=i+1
 
 if __name__ == '__main__':
   t1=time.perf_counter()
